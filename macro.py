@@ -2,22 +2,25 @@ from directkeys import ReleaseKeyPynput, PressKeyPynput, W, A, S, D, Enter
 import time
 from pynput.mouse import Button, Controller
 import pyautogui
+from TkinterTest import changeOutput
+
 mouse = Controller()
 
-print("Welcome to Craz3's Auto-Bet program!")
-print("Type in '999' to run program forever")
+def Run(number, res1, res2):
+    if number != 999:
+        for x in range(0, number):
+            autoBet(res1, res2)
 
-length = int(input("# to run program: "))
+    if number == 999:
+        print('Running forever')
+        while True:
+            autoBet(res1, res2)
 
-print('Starting Script in 5 seconds')
-for i in range(0, 5):
-    print(5-i)
-    time.sleep(1)
+def autoBet(res1, res2):
+    output="Starting game"
+    changeOutput(output)
 
-
-def autoBet():
-    print('Starting game')
-    mouse.position = (1450, 900)
+    mouse.position = (res1*0.755, res2*0.833)
     time.sleep(0.1)
     PressKeyPynput(Enter)
     time.sleep(0.1)
@@ -26,7 +29,7 @@ def autoBet():
     time.sleep(1)
 
     print('Selecting horse')
-    mouse.position = (350, 350)
+    mouse.position = (res1*0.182, res2*0.324)
     time.sleep(0.1)
     PressKeyPynput(Enter)
     time.sleep(0.1)
@@ -34,13 +37,13 @@ def autoBet():
     time.sleep(1)
 
     print('Creating bet')
-    mouse.position = (1525, 520)
+    mouse.position = (res1*0.794, res2*0.481)
     time.sleep(0.1)
     PressKeyPynput(Enter)
     time.sleep(0.1)
 
     print('Starting race')
-    mouse.position = (1300, 800)
+    mouse.position = (res1*0.677, res2*0.741)
     print("make this console active window and hit ctrl+c to stop program here")
     for x in range(0, 37):
         b = "Loading" + "." * x
@@ -50,19 +53,8 @@ def autoBet():
 
 
     print('Resetting')
-    mouse.position = (950, 1000)
+    mouse.position = (res1*0.495, res2*0.926)
     time.sleep(0.1)
     PressKeyPynput(Enter)
     time.sleep(0.1)
     ReleaseKeyPynput(Enter)
-
-if length != 999:
-    for x in range(0, length):
-        autoBet()
-
-if length == 999:
-    print('Running forever')
-    while True:
-        autoBet()
-
-print('done')
